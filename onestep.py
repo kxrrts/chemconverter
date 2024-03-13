@@ -8,17 +8,14 @@ def conversioncalc():
     element = input("Which element would you like to access? ") 
 
 
-    #setting up for exponents 
-    def parse_exponent(input_str): 
-        import re
-
+    #setting up for exponents
     def parse_exponential_input(input_str):
         match = re.match(r'^([\d.]+)x10\^(\d+)$', input_str)
         if match:
             coefficient, exponent = map(float, match.groups())
             return coefficient * (10 ** exponent)
         else:
-            raise ValueError("Invalid input format. Please enter a number in the form '5.023x10^6'.")
+            raise ValueError("Invalid input format. Please enter a number in the form '5.023x10^6'.") #if invalid, asks user to properly format given an example
 
 
 
@@ -26,7 +23,7 @@ def conversioncalc():
     try: 
         selected_element = periodictable.elements.symbol(element)
         molar_mass = selected_element.mass
-
+    #prints the molar mass of the element to the user 
         print(f"The molar mass of {selected_element.name} ({selected_element.symbol}) is {molar_mass:.4f} g/mol.")
     except ValueError:
         print(f"Element with symbol {element} not found.")
@@ -39,6 +36,7 @@ def conversioncalc():
             value1 = input("How many grams of this element do you have ")  
         elif options == "3": 
             value1 = input("How many atoms of this element do you have? (Express exponents as 5.02x10^3) ")
+            #runs the exponent checker to ensure that the input is not faulty and calculations can resume 
             try:
                 valueE = parse_exponential_input(value1)
             except ValueError as e:
@@ -71,10 +69,10 @@ def conversioncalc():
         print(str(ans))
         return ans 
 
-    #compound conversion 
+    #compound conversion (Not working can ignore)
     #def compounds(compound_formula): 
-        compound_info = get_compound_info(compound_formula)
-        print(compound_info)
+     #   compound_info = get_compound_info(compound_formula)
+      #  print(compound_info)
 
     #lets the user chose which converting calculations to perform 
     options = input("What would you like to convert from? 1. Grams -> Moles 2. Moles -> Grams 3. Atoms -> Moles 4. Moles -> Atoms 5. Liters to Grams, Moles, Atoms ")
