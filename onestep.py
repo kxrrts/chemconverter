@@ -62,11 +62,15 @@ def conversioncalc():
         return ans 
     #converting from liters to grams, moles, and even atoms 
     def liters(selected_element): 
-        value2 = input("How many moles of this element do you have (Liter conversion)? ") 
-        volume_ml = 1 
-        value2 = selected_element.density / selected_element.mass
-        ans = 1 / value2 * volume_ml
-        print(str(ans))
+        value2 = input("How many liters of this element do you have (Liter conversion)? ") 
+        opt = input("Press 1 to go to grams, press 2 to go to moles, press 3 to go to atoms ")
+        if opt == '1':
+            ans = (value2 * 1000) * selected_element.density 
+        elif opt == '2': 
+            ans = (value2 * 1000) * selected_element.density / selected_element.mass
+        elif opt == '3': 
+            ans = (value2 * 1000) * selected_element.density / selected_element.mass * avgnumber
+        print((str(ans) + " is your answer"))
         return ans 
 
     #compound conversion (Not working can ignore)
